@@ -1,0 +1,16 @@
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\obj\Debug\dwweb-rhino.csproj.CoreCompileInputs.cache
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\bin\Debug\DWWebRhino.dll
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\bin\Debug\DWWebRhino.pdb
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\obj\Debug\DWWebRhino.dll
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\obj\Debug\DWWebRhino.pdb
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\obj\Debug\dwweb-rhino.csprojAssemblyReference.cache
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\obj\Debug\Views\Login.g.cs
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\obj\Debug\DWWebRhino_MarkupCompile.cache
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\obj\Debug\DWWebRhino_MarkupCompile.lref
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\obj\Debug\Views\Login.baml
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\obj\Debug\DWWebRhino.g.resources
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\bin\Debug\Newtonsoft.Json.dll
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\bin\Debug\Newtonsoft.Json.xml
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\obj\Debug\dwweb-rhino.csproj.CopyComplete
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\obj\Debug\Views\UserProfile.g.cs
+C:\Users\JERGRAHAM\source\repos\dwweb-rhino\dwweb-rhino\obj\Debug\Views\UserProfile.baml
