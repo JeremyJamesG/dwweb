@@ -69,6 +69,7 @@
     <Compile Include="Services\APIService.cs" />
     <Compile Include="Services\IDataService.cs" />
     <Compile Include="Services\TestDataService.cs" />
+    <Compile Include="ViewModels\Commands\PostCommand.cs" />
     <Compile Include="ViewModels\Commands\LoginCommand.cs" />
     <Compile Include="ViewModels\Commands\RegisterCommand.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

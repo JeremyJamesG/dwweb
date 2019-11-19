@@ -15,7 +15,7 @@ namespace dwweb_rhino.Services
 
         public APIService()
         {
-            this.baseUrl = "http://localhost:7000/api/v1";
+            this.baseUrl = "http://localhost:53228/api/v1";
         }
 
         public User AuthenticateUser(string username, string password)
@@ -58,6 +58,7 @@ namespace dwweb_rhino.Services
             });
 
             WebClient client = new WebClient();
+            client.Headers["Content-Type"] = "application/json";
 
             try
             {
@@ -83,9 +84,25 @@ namespace dwweb_rhino.Services
             throw new NotImplementedException();
         }
 
-        public bool PostProjet(Project project)
+        public string PostProjet(User user, string projectAsJson)
         {
-            throw new NotImplementedException();
+            string endpoint = this.baseUrl + "/projects";
+            string method = "POST";
+            string accessToken = "bearer " + user.Token;
+
+            WebClient client = new WebClient();
+            client.Headers["Content-Type"] = "application/json";
+            client.Headers["Authorization"] = accessToken;
+
+            try
+            {
+                string response = client.UploadString(endpoint,method, projectAsJson);
+                return response;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 

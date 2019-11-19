@@ -27,12 +27,12 @@ namespace dwweb_rhino.Services
 
             project.Objects = new List<AttributedObject>();
 
-            var objects = RhinoDoc.ActiveDoc.Objects.GetObjectList(ObjectType.AnyObject);
+            var objects = RhinoDoc.ActiveDoc.Objects.GetObjectList(ObjectType.AnyObject).ToList();
 
             foreach (RhinoObject rObj in objects)
             {
-                if (!rObj.HasUserData)
-                    continue;
+                //if (!rObj.HasUserData)
+                //    continue;
 
                 AttributedObject aObj = new AttributedObject()
                 {
@@ -41,13 +41,13 @@ namespace dwweb_rhino.Services
 
                 aObj.Parameters = new List<Parameter>();
 
-                foreach (string key in rObj.Attributes.UserDictionary.Keys)
+                foreach (string key in rObj.Attributes.GetUserStrings())
                 {
                     aObj.Parameters.Add(new Parameter()
                     {
                         Name = key,
-                        Value = rObj.Attributes.UserDictionary[key].ToString()
-                    });
+                        Value = rObj.Attributes.GetUserString(key)
+                    }); ;
                 }
 
                 project.Objects.Add(aObj);
