@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using dwweb_rhino.Extensions;
 using dwweb_rhino.Models;
 using Rhino;
 using Rhino.DocObjects;
@@ -31,12 +32,11 @@ namespace dwweb_rhino.Services
 
             foreach (RhinoObject rObj in objects)
             {
-                //if (!rObj.HasUserData)
-                //    continue;
-
                 AttributedObject aObj = new AttributedObject()
                 {
-                    Type = rObj.ObjectType.ToString()
+                    Id = rObj.Id,
+                    Type = rObj.ObjectType.ToString(),
+                    Geometry = rObj.ToThreeJSGeometry()
                 };
 
                 aObj.Parameters = new List<Parameter>();
