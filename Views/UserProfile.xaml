@@ -29,7 +29,7 @@
             <Grid Margin="10" Grid.Column="1" Grid.RowSpan="2">
                 <Border x:Name="CurrentProject" 
                 BorderThickness="2" BorderBrush="Black" CornerRadius="5"/>
-                <TextBox Margin="10" Text="{Binding TestJson}"/>
+                <TextBox Margin="10" Text="{Binding TestJson}" VerticalScrollBarVisibility="Visible"/>
             </Grid>
 
             <Button 

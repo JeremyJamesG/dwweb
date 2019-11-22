@@ -33,7 +33,7 @@ namespace dwweb_rhino.Services
 
             client.Headers["Content-Type"] = "application/json";
 
-             //Maybe need to see if can use refresh token here instead of getting new token?
+            //Maybe need to see if can use refresh token here instead of getting new token?
             try
             {
                 string response = client.UploadString(endpoint, method, json);
@@ -41,7 +41,7 @@ namespace dwweb_rhino.Services
                 User user = JsonConvert.DeserializeObject<User>(response);
                 return user;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return null;
             }
@@ -96,7 +96,7 @@ namespace dwweb_rhino.Services
 
             try
             {
-                string response = client.UploadString(endpoint,method, projectAsJson);
+                string response = client.UploadString(endpoint, method, projectAsJson);
                 return response;
             }
             catch
@@ -105,6 +105,4 @@ namespace dwweb_rhino.Services
             }
         }
     }
-
-    
 }

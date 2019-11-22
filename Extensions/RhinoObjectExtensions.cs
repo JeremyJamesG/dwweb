@@ -23,28 +23,78 @@ namespace dwweb_rhino.Extensions
             };
 
             threeModel.data = new Data();
+            threeModel.data.attributes = new Attributes();
             
 
             var geo = rhinoObject.Geometry;
 
             if (geo.HasBrepForm)
             {
-                Brep brep = (Brep)geo;
+                Brep brep = Brep.TryConvertBrep(geo);
 
-                Mesh mesh = Mesh.CreateFromBrep(brep, new MeshingParameters())[0];
+                Mesh[] meshes = Mesh.CreateFromBrep(brep, new MeshingParameters());
+                Mesh mesh = null;
+
+                if (meshes.Length > 1)
+                {
+                    Mesh meshfirst = meshes[0];
+                    
+                    for (int i = 1; i < meshes.Length; i++)
+                    {
+                        meshfirst.Append(meshes[i]);
+                    }
+
+                    mesh = meshfirst;
+                }
+                else
+                {
+                    mesh = meshes[0];
+                }
+
+                Rhino.RhinoDoc.ActiveDoc.Objects.AddMesh(mesh);
                 
                 mesh.Faces.ConvertQuadsToTriangles();
 
-                int[] verticeArray = new int[mesh.Faces.Count * 3];
+
+                double[] verticeArray = new double[(mesh.Faces.Count * 3) * 3];
+                double[] normals = new double[(mesh.Faces.Count * 3) * 3];
+
+                mesh.Normals.ComputeNormals();
+
+                //int normCounter = 0;
+                //foreach (var normy in mesh.Normals)
+                //{
+                //    normy.Unitize();
+                //    normals[normCounter++] = normy.X;
+                //    normals[normCounter++] = normy.Y;
+                //    normals[normCounter++] = normy.Z;
+                //}
 
                 int counter = 0;
 
-                foreach (Point3f vert in mesh.Vertices)
+                foreach (MeshFace mface in mesh.Faces)
                 {
-                    verticeArray[counter++] = (int)(vert.X);
-                    verticeArray[counter++] = (int)(vert.Y);
-                    verticeArray[counter++] = (int)(vert.Z);
+
+                    normals[counter] = mesh.Normals[mface.A].X;
+                    verticeArray[counter++] = mesh.Vertices[mface.A].X;
+                    verticeArray[counter++] = mesh.Vertices[mface.A].Y;
+                    verticeArray[counter++] = mesh.Vertices[mface.A].Z;
+
+                    verticeArray[counter++] = mesh.Vertices[mface.B].X;
+                    verticeArray[counter++] = mesh.Vertices[mface.B].Y;
+                    verticeArray[counter++] = mesh.Vertices[mface.B].Z;
+
+                    verticeArray[counter++] = mesh.Vertices[mface.C].X;
+                    verticeArray[counter++] = mesh.Vertices[mface.C].Y;
+                    verticeArray[counter++] = mesh.Vertices[mface.C].Z;
                 }
+
+                //foreach (Point3f vert in mesh.Vertices)
+                //{
+                //    verticeArray[counter++] = Math.Round(vert.X, 3);
+                //    verticeArray[counter++] = Math.Round(vert.Y, 3);
+                //    verticeArray[counter++] = Math.Round(vert.Z, 3); 
+                //}
 
                 threeModel.data.attributes.position = new AttributeObj()
                 {
@@ -53,10 +103,17 @@ namespace dwweb_rhino.Extensions
                     array = verticeArray,
                 };
 
+                //threeModel.data.attributes.normal = new AttributeObj()
+                //{
+                //    itemSize = 3,
+                //    type = "Float32Array",
+                //    array = normals
+                //};
+
                 threeModel.data.boundingSphere = new BoundingSphere()
                 {
                     center = new int[] { 0, 0, 0 },
-                    radius = 100,
+                    radius = 1000,
                 };
             }
 

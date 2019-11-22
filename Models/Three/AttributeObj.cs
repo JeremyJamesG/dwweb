@@ -10,5 +10,6 @@ namespace dwweb_rhino.Models.Three
     {
         public int itemSize { get; set; }
         public string type { get; set; }
-        public int[] array { get; set; }
+        public double[] array { get; set; }
+    }
 }
